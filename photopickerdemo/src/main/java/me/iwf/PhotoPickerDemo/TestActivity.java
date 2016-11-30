@@ -121,6 +121,19 @@ public class TestActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            pathslook = (ArrayList<String>) MyPhotoUtil.getPhotoMap();
+        } catch (Exception ex) {
+//                    Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT).show();
+        }
+        if(pathslook!=null){
+            recyclerView.init(this, MultiPickResultView.ACTION_SELECT, pathslook);
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Intent datad = data;
@@ -154,7 +167,6 @@ public class TestActivity extends AppCompatActivity {
             case R.id.btn_test: {
                 try {
                     pathslook = (ArrayList<String>) MyPhotoUtil.getPhotoMap();
-
                 } catch (Exception ex) {
 //                    Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT).show();
                 }
