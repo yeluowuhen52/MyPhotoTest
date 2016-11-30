@@ -153,7 +153,7 @@ public class TestActivity extends AppCompatActivity {
 
                 }
                 PhotoPicker.builder()
-                        .setPhotoCount(4)
+                        .setPhotoCount(2)
                         .setShowCamera(true)
                         .setSelected(pathslook)
                         .start(this);

@@ -129,12 +129,12 @@ public class PhotoPickerActivity extends AppCompatActivity {
           return true;
         }
 
-        if (total > maxCount) {
-          Toast.makeText(getActivity(), getString(R.string.__picker_over_max_count_tips, maxCount),
-              LENGTH_LONG).show();
-          return false;
-        }
-        titlebar.getTvRight().setText(getString(R.string.__picker_done_with_count, total, maxCount));
+//        if (total > maxCount) {
+//          Toast.makeText(getActivity(), getString(R.string.__picker_over_max_count_tips, maxCount),
+//              LENGTH_LONG).show();
+//          return false;
+//        }
+        titlebar.getTvRight().setText(getString(R.string.__picker_done));
         return true;
       }
     });
