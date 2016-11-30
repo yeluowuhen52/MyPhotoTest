@@ -25,8 +25,8 @@
       android:id="@+id/v_delete"
       android:background="@drawable/icon_delete"
       android:layout_alignParentRight="true"
-      android:layout_width="15dp"
-      android:layout_height="15dp"/>
+      android:layout_width="25dp"
+      android:layout_height="25dp"/>
 
   <ImageView
       android:layout_margin="5dip"

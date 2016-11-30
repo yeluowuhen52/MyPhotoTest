@@ -72,7 +72,7 @@ public class MultiPickResultView extends FrameLayout {
     private void initView(Context context, AttributeSet attrs) {
 
         recyclerView = new android.support.v7.widget.RecyclerView(context,attrs);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL));
         this.addView(recyclerView);
     }
 
