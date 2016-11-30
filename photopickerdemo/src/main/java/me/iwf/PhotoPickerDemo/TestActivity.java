@@ -124,11 +124,13 @@ public class TestActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Intent datad = data;
+        //这里捕捉异常
         try{
             tempPathslook = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
         }catch (Exception ex){
-
+//                Toast.makeText(TestActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
         }
+        //判断当前的集合和返回集合的差异，如果返回的更多，则添加进去，否则，则将其替换为返回的集合
         if(tempPathslook.size()>pathslook.size()){
             for (String temp : tempPathslook) {
                 if (!pathslook.contains(temp)) {
@@ -141,10 +143,10 @@ public class TestActivity extends AppCompatActivity {
 //        data.putStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS, pathslook);
 //        recyclerView.onActivityResult(requestCode,resultCode,data);
         MyPhotoUtil.putPhotoMap(pathslook);
-        ArrayList<String> temp = pathslook;
+//        ArrayList<String> temp = pathslook;
 //        recyclerView.showPics(temp);
         recyclerView.init(this, MultiPickResultView.ACTION_SELECT, pathslook);
-    }
+}
 
     private void onClick(@IdRes int viewId) {
 
@@ -154,7 +156,7 @@ public class TestActivity extends AppCompatActivity {
                     pathslook = (ArrayList<String>) MyPhotoUtil.getPhotoMap();
 
                 } catch (Exception ex) {
-
+//                    Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT).show();
                 }
                 PhotoPicker.builder()
                         .setPhotoCount(2)
