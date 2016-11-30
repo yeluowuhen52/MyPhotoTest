@@ -129,10 +129,14 @@ public class TestActivity extends AppCompatActivity {
         }catch (Exception ex){
 
         }
-        for (String temp : tempPathslook) {
-            if (!pathslook.contains(temp)) {
-                pathslook.add(temp);
+        if(tempPathslook.size()>pathslook.size()){
+            for (String temp : tempPathslook) {
+                if (!pathslook.contains(temp)) {
+                    pathslook.add(temp);
+                }
             }
+        }else{
+            pathslook = tempPathslook;
         }
 //        data.putStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS, pathslook);
 //        recyclerView.onActivityResult(requestCode,resultCode,data);
