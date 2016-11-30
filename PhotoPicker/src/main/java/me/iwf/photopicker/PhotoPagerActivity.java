@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.iwf.photopicker.fragment.ImagePagerFragment;
+import me.iwf.photopicker.utils.MyPhotoUtil;
 import me.iwf.photopicker.widget.MultiPickResultView;
 import me.iwf.photopicker.widget.Titlebar;
 
@@ -68,6 +69,7 @@ public class PhotoPagerActivity extends AppCompatActivity {
               titlebar.setTitle(getString(R.string.__picker_preview) +" "+getString(R.string.__picker_image_index, 0,
                       pagerFragment.getPaths().size()));
             }
+            MyPhotoUtil.putPhotoMap(pagerFragment.getPaths());
 
           }
 
