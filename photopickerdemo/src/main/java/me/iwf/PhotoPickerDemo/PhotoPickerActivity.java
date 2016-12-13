@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import me.iwf.photopicker.PhotoPicker;
 import me.iwf.photopicker.utils.MyPhotoUtil;
 import me.iwf.photopicker.widget.MultiPickResultView;
 
-public class TestActivity extends AppCompatActivity {
+public class PhotoPickerActivity extends AppCompatActivity {
 
     MultiPickResultView recyclerView;
 
@@ -30,8 +31,9 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_photo_picker);
         Button btn = (Button) findViewById(R.id.btn_test);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +143,7 @@ public class TestActivity extends AppCompatActivity {
         try{
             tempPathslook = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
         }catch (Exception ex){
-//                Toast.makeText(TestActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PhotoPickerActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
         }
         //判断当前的集合和返回集合的差异，如果返回的更多，则添加进去，否则，则将其替换为返回的集合
         if(tempPathslook.size()>pathslook.size()){

@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,9 +34,8 @@ import static me.iwf.photopicker.PhotoPreview.EXTRA_ACTION;
  * Created by donglua on 15/6/24.
  */
 public class PhotoPagerActivity extends AppCompatActivity {
-
   private ImagePagerFragment pagerFragment;
-
+  List<String> paths;
   //private ActionBar actionBar;
   private boolean showDelete;
   private Titlebar titlebar;
@@ -46,7 +46,7 @@ public class PhotoPagerActivity extends AppCompatActivity {
     setContentView(R.layout.__picker_activity_photo_pager);
 
     int currentItem = getIntent().getIntExtra(EXTRA_CURRENT_ITEM, 0);
-    List<String> paths = getIntent().getStringArrayListExtra(EXTRA_PHOTOS);
+    paths = getIntent().getStringArrayListExtra(EXTRA_PHOTOS);
     showDelete = getIntent().getBooleanExtra(EXTRA_SHOW_DELETE, true);
     int action = getIntent().getIntExtra(EXTRA_ACTION, MultiPickResultView.ACTION_ONLY_SHOW);
 
@@ -56,7 +56,18 @@ public class PhotoPagerActivity extends AppCompatActivity {
     }
     pagerFragment.setPhotos(paths, currentItem);
     titlebar = (Titlebar) findViewById(R.id.titlebar);
-    titlebar.init(this);
+//    titlebar.init(this);
+    titlebar.initMe(this);
+    titlebar.setLeftOnclickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent();
+        intent.putExtra(KEY_SELECTED_PHOTOS, pagerFragment.getPaths());
+        setResult(RESULT_OK, intent);
+        MyPhotoUtil.putPhotoMap(paths);
+        finish();
+      }
+    });
     if (action == MultiPickResultView.ACTION_SELECT){
       titlebar.setRitht(getApplicationContext().getResources().getDrawable(R.drawable.__picker_delete), "", new View.OnClickListener() {
         @Override
@@ -69,7 +80,7 @@ public class PhotoPagerActivity extends AppCompatActivity {
               titlebar.setTitle(getString(R.string.__picker_preview) +" "+getString(R.string.__picker_image_index, 0,
                       pagerFragment.getPaths().size()));
             }
-            MyPhotoUtil.putPhotoMap(pagerFragment.getPaths());
+
 
           }
 
@@ -135,6 +146,7 @@ public class PhotoPagerActivity extends AppCompatActivity {
     Intent intent = new Intent();
     intent.putExtra(KEY_SELECTED_PHOTOS, pagerFragment.getPaths());
     setResult(RESULT_OK, intent);
+    MyPhotoUtil.putPhotoMap(paths);
     finish();
 
     super.onBackPressed();
@@ -145,6 +157,7 @@ public class PhotoPagerActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
 
     if (item.getItemId() == android.R.id.home) {
+
       onBackPressed();
       return true;
     }

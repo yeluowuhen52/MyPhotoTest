@@ -84,6 +84,10 @@ public class Titlebar extends FrameLayout {
         ivLeft.setOnClickListener(leftOnclickListener);
 
     }
+    public void initMe(Activity activity){
+        mActivity = activity;
+
+    }
 
     private void initEvent(Context context, AttributeSet attrs, int defStyleAttr) {
 

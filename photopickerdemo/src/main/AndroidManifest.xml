@@ -44,7 +44,7 @@
             />
         <activity
             android:theme="@style/customTheme"
-            android:name=".TestActivity">
+            android:name=".PhotoPickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
